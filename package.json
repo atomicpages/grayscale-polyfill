@@ -1,0 +1,84 @@
+{
+    "name": "grayscale-polyfill",
+    "version": "0.0.1",
+    "description": "A tiny grayscale polyfill for IE 10 and 11.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "pika build",
+        "clean": "shx rm -rf pkg",
+        "version": "npm-run-all -p clean lint ts-check",
+        "lint": "eslint 'src/**/*.ts'",
+        "ts-check": "npx tsc --noEmit"
+    },
+    "keywords": [
+        "svg",
+        "grayscale",
+        "greyscale",
+        "ie",
+        "polyfill",
+        "browser",
+        "react",
+        "react-polyfill"
+    ],
+    "author": "Dennis Thompson",
+    "license": "MIT",
+    "peerDependencies": {
+        "react": "^16.8.0"
+    },
+    "devDependencies": {
+        "@djthoms/eslint-config": "^3.0.0",
+        "@djthoms/prettier-config": "^2.0.0",
+        "@pika/pack": "^0.5.0",
+        "@pika/plugin-build-node": "^0.9.2",
+        "@pika/plugin-build-web": "^0.9.2",
+        "@pika/plugin-ts-standard-pkg": "^0.9.2",
+        "@types/react": "^16.9.46",
+        "eslint": "^7.6.0",
+        "npm-run-all": "^4.1.5",
+        "pika-plugin-legacy-browser": "^1.5.0",
+        "prettier": "^2.0.5",
+        "react": "^16.13.1",
+        "serve": "^11.3.2",
+        "shx": "^0.3.2",
+        "typescript": "^3.9.7"
+    },
+    "@pika/pack": {
+        "pipeline": [
+            [
+                "@pika/plugin-ts-standard-pkg",
+                {
+                    "args": [
+                        "--target",
+                        "es2019"
+                    ]
+                }
+            ],
+            [
+                "@pika/plugin-build-web"
+            ],
+            [
+                "@pika/plugin-build-node"
+            ],
+            [
+                "pika-plugin-legacy-browser",
+                {
+                    "name": "Grayscale",
+                    "sourcemap": true,
+                    "minify": false
+                }
+            ]
+        ]
+    },
+    "prettier": "@djthoms/prettier-config",
+    "eslintConfig": {
+        "env": {
+            "browser": true
+        },
+        "extends": [
+            "@djthoms/eslint-config",
+            "@djthoms/eslint-config/esmodules",
+            "@djthoms/eslint-config/typescript"
+        ]
+    }
+}
