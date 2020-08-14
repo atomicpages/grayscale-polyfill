@@ -4,7 +4,7 @@
     "description": "A tiny grayscale polyfill for IE 10 and 11.",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "npx parcel test/index.html",
         "build": "pika build",
         "clean": "shx rm -rf pkg",
         "version": "npm-run-all -p clean lint ts-check",
